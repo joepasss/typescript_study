@@ -1,63 +1,57 @@
-import * as multiplyModule from './multiply';
-// import multiply, {multiplyByTwo} from './multiply';
-// import multiply, { multiplyByTwo as mBy2, HelloWorld } from './multiply';
-
-const a = 3;
-const b = 4;
-
-console.log(`${a} * ${b} = ${multiplyModule.default(a, b)}`);
-multiplyModule.multiplyByTwo(a);
-
-// Boolean
-const bool: boolean = true;
-
-// number
-const num: number = 10;
-
-// String
-const str: string = 'strings';
-
-// Null and Undefined
-const nu: null = null;
-const un: undefined = undefined;
-
-// Object
-type primitiveTypes = boolean | number | string | symbol | null | undefined;
-const myObj: object = new Map();
-
-// Void
-function log(message: string): void {
-  console.log(message);
+// Interfaces
+interface Profile {
+  name: string;
+  age: number;
 }
 
-// Array
-const arr1: string[] = ['x', 'y'];
-const arr2: Array<string> = ['x', 'y'];
+let profile: Profile = {
+  name: 'joe',
+  age: 89,
+};
 
-// Tuple
-let tup: [string, number] = ['str', 1];
-
-// Enum
-enum Color {
-  Red = 2,
-  Green = 55,
-  Blue = 'blue',
+interface OptionalProfile {
+  name: string;
+  age?: number;
 }
 
-const myFavoriteColor: Color = Color.Blue;
-const myFCol: string = Color[55];
+let optProfile: OptionalProfile = {
+  name: 'joe',
+};
 
-// Any
-let an: any = 'string';
-an = 3;
-an = true;
+optProfile.name = 'joji';
 
-// Type Assertions
-const email = document.getElementById('email');
-
-if (email) {
-  email.addEventListener('change', (e) => {
-    const input = e.currentTarget as HTMLInputElement;
-    console.log(input.value);
-  });
+// Index Signature
+interface A {
+  someProp: string;
+  [key: string]: number | string;
 }
+
+const a: A = { someProp: 'someProp' };
+a.x = 1;
+a.y = 2;
+
+// Call Signature
+interface Sum {
+  (a: number, b: number): number;
+  prop1: string;
+}
+
+const sum: Sum = (a, b) => a + b;
+sum.prop1 = 'some Prop';
+
+// Extending Interfaces
+interface Parent1 {
+  x: string;
+}
+
+interface Parent2 {
+  y: string;
+}
+
+interface Parent3 {
+  z: string;
+}
+
+interface Child extends Parent1, Parent2, Parent3 {}
+
+let child: Child = { x: 'some props', y: 'some props', z: 'some props' };
