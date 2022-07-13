@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "build": "tsc -w",
+    "nodemon": "nodemon -w dist -q dist/index.js",
+    "start": "concurrently -k -n COMPILER,NODEMON -c yellow,blue \"tsc -w\" \"nodemon -w dist -q dist/index.js\""
+  },
   "devDependencies": {
     "concurrently": "^7.2.2",
     "nodemon": "^2.0.19",
