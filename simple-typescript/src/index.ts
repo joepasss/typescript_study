@@ -1,57 +1,36 @@
-// Interfaces
-interface Profile {
-  name: string;
-  age: number;
+// Functions (optional and default parameters)
+
+function sum(a: number, b: number): number {
+  return a + b;
 }
 
-let profile: Profile = {
-  name: 'joe',
-  age: 89,
-};
+type MyFunc = (a: number, b: number) => number;
+const sum2: MyFunc = (a, b) => a + b;
 
-interface OptionalProfile {
-  name: string;
-  age?: number;
+sum(1, 1);
+
+type MyFunc2 = (a?: number, b?: number) => number;
+const sum3: MyFunc2 = (a = 0, b = 0) => a + b;
+
+sum3();
+
+// Unknown number of arguments
+
+function sumEveryThing(
+  arg1: string,
+  arg2: boolean,
+  ...numbers: number[]
+): number {
+  return numbers.reduce((result, sum) => result + sum, 0);
 }
 
-let optProfile: OptionalProfile = {
-  name: 'joe',
-};
+// Overloads
+function calcArea(width: number, height: number): number;
+function calcArea(length: number): number;
+function calcArea(...args: number[]): number {
+  if (args.length === 2) {
+    return args[0] * args[1];
+  }
 
-optProfile.name = 'joji';
-
-// Index Signature
-interface A {
-  someProp: string;
-  [key: string]: number | string;
+  return Math.pow(args[0], 2);
 }
-
-const a: A = { someProp: 'someProp' };
-a.x = 1;
-a.y = 2;
-
-// Call Signature
-interface Sum {
-  (a: number, b: number): number;
-  prop1: string;
-}
-
-const sum: Sum = (a, b) => a + b;
-sum.prop1 = 'some Prop';
-
-// Extending Interfaces
-interface Parent1 {
-  x: string;
-}
-
-interface Parent2 {
-  y: string;
-}
-
-interface Parent3 {
-  z: string;
-}
-
-interface Child extends Parent1, Parent2, Parent3 {}
-
-let child: Child = { x: 'some props', y: 'some props', z: 'some props' };
