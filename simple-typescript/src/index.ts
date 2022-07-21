@@ -1,60 +1,34 @@
 class Robot {
-  private _color: string;
+  #name: string;
 
-  static availableColors = ['green', 'yellow'];
-  static isColorAvailable(color: string) {
-    return Robot.availableColors.includes(color);
+  private somePrivateField = 'it is private Field!!!!';
+
+  constructor(name: string) {
+    this.#name = name;
   }
 
-  constructor(protected _name: string) {}
-
-  askName() {
-    console.log(`My name is ${this.name}`);
-  }
-
-  move(distance: number) {
-    console.log(`${this.name} moved ${distance} meters`);
-  }
-
-  set color(color: string) {
-    if (!Robot.isColorAvailable(color)) {
-      throw new Error(`Color ${color} is not available`);
-    }
-    this._color = color;
-  }
-
-  set name(value: string) {
-    this._name = 'PREFIX_' + value;
-  }
-
-  get name() {
-    return this._name + '_SUFFIX';
+  getName() {
+    return this.#name;
   }
 }
 
-class FlyingRobot extends Robot {
-  jetpackSize: number;
+class AdvancedRobot extends Robot {
+  #name: string;
 
-  constructor(name: string, jetpackSize: number) {
+  private somePrivateField = 'OVERRIDDEN PRIVATE FIELD';
+
+  constructor(name: string) {
     super(name);
-    this.jetpackSize = jetpackSize;
+    this.#name = `Advanced ${name}`;
   }
 
-  move(distance: number) {
-    console.log(`${this.name} is flying`);
-    super.move(distance);
+  getAdvancedRobotName() {
+    return this.#name;
   }
 }
 
-const robot = new Robot('John');
-robot.askName();
+const robot = new AdvancedRobot('Jack');
 
-robot.move(30);
-
-const flyingRobot = new FlyingRobot('Jim', 2);
-flyingRobot.move(10);
-
-flyingRobot.name = 'Joe';
-console.log(`My name is ${flyingRobot.name}`);
-
-Robot.availableColors;
+console.log('private', robot.somePrivateField);
+console.log('parent name', robot.getName());
+console.log('subclass name', robot.getAdvancedRobotName());
