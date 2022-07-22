@@ -12,17 +12,17 @@ export class Robot {
   }
 }
 
-export class AdvancedRobot extends Robot {
-  #name: string;
+// export class AdvancedRobot extends Robot {
+//   #name: string;
 
-  private somePrivateField = 'OVERRIDDEN PRIVATE FIELD';
+//   private somePrivateField = 'OVERRIDDEN PRIVATE FIELD';
 
-  constructor(name: string) {
-    super(name);
-    this.#name = `Advanced ${name}`;
-  }
+//   constructor(name: string) {
+//     super(name);
+//     this.#name = `Advanced ${name}`;
+//   }
 
-  getAdvancedRobotName() {
-    return this.#name;
-  }
-}
+//   getAdvancedRobotName() {
+//     return this.#name;
+//   }
+// }

@@ -1,7 +1,6 @@
-import { ShoppingCart, Order, calculateTotalAmount } from './interface-2';
+import initalizeAnimal, { Cat, Dog } from './interface-class';
 
-const cart = new ShoppingCart();
-const order = new Order();
+const cat = initalizeAnimal(Cat, 'Felix');
+const dog = initalizeAnimal(Dog, 'Ava');
 
-console.log(`The cart's total is ${calculateTotalAmount(cart)}`);
-console.log(`The order's total is ${calculateTotalAmount(order)}`);
+dog.bark();
