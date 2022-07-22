@@ -1,8 +1,7 @@
-import { AdvancedRobot } from './ECMAScript-private-fields';
+import { ShoppingCart, Order, calculateTotalAmount } from './interface-2';
 
-const robot = new AdvancedRobot('Jack');
+const cart = new ShoppingCart();
+const order = new Order();
 
-// it catches error but logged correctly
-console.log('Private : ', robot.somePrivateField);
-console.log('parent name : ', robot.getName());
-console.log('subclass name : ', robot.getAdvancedRobotName());
+console.log(`The cart's total is ${calculateTotalAmount(cart)}`);
+console.log(`The order's total is ${calculateTotalAmount(order)}`);
